@@ -9,6 +9,10 @@ function HookExample() {
 
   useEffect(() => {
     document.title = `You clicked ${count} times`;
+    console.log("create: ", count);
+    return function cleanup() {
+      console.log("clean up for: ", count);
+    }
   });
 
   const [subscribeCount, setSubscribeCount] = useState(0);
@@ -55,8 +59,41 @@ class ClassExample extends React.Component {
   }
 }
 
+class FriendsStatus extends React.Component {
+  constructor(props) {  
+    super(props);
+    this.state = { isOnline: null };
+  }
+
+  componentDidMont() {
+
+  }
+
+  handleStatusChange(status) {
+    this.setState({ isOnline: status.isOnline});
+  }
+
+  render() {
+    if (this.state.isOnline === null) {
+      return 'Loading...';
+    }
+
+    return this.state.isOnline ? "Online" : "Offline";
+  }
+}
+
+function FriendStatusHook(props) {
+  const [online, setOnline] = useState(null);
+
+  if(online === null) {
+    return "Loading...";     
+  }
+
+  return online ? "Online" : "Offline";
+}
+
 ReactDOM.render(
-    <ClassExample />,
+    <HookExample />,
     document.getElementById('root')
 );
 
