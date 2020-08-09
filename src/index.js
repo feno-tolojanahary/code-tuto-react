@@ -1,11 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+function HookExample() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  const [subscribeCount, setSubscribeCount] = useState(0);
+
+  return (
+    <div>
+      <p>You click me {count} time</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <p>subscribe count {subscribeCount} s</p>
+      <button onClick={() => setSubscribeCount(subscribeCount + 1)}>
+        Change subscribe
+      </button>
+    </div>
+  )
+}
+
+class ClassExample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };  
+  }
+
+  render() {
+    return (
+      <div>
+        <p>You click me {this.state.count} time</p>
+        <button onClick={() => this.setState({count: this.state.count + 1})}>
+          Click me
+        </button>
+      </div>
+    );
+  }
+}
+
 ReactDOM.render(
-    <App />,
+    <HookExample />,
     document.getElementById('root')
 );
 
