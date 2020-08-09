@@ -33,6 +33,16 @@ class ClassExample extends React.Component {
     this.state = { count: 0 };  
   }
 
+  componentDidMount() {
+    console.log("componentDidMount");
+    document.title = `Clicked ${this.state.count} times`;
+  }
+
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+    document.title = `Clicked ${this.state.count} times`;
+  }
+
   render() {
     return (
       <div>
@@ -46,7 +56,7 @@ class ClassExample extends React.Component {
 }
 
 ReactDOM.render(
-    <HookExample />,
+    <ClassExample />,
     document.getElementById('root')
 );
 
