@@ -13,29 +13,62 @@ import ThemeTogglerButton from './views/example-context/theme-toggler-button';
 //   );
 // }
 
+// export default class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.toggleTheme = () => {
+//       this.setState((state) => ({
+//         theme: state.theme === themes.dark ? themes.light : themes.dark
+//       }));
+//     };
+
+//     this.state = {
+//       theme: themes.dark,
+//       toggleTheme: this.toggleTheme
+//     }
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <ThemeContext.Provider value={this.state}>
+//           <Content />
+//         </ThemeContext.Provider>
+//       </div>
+//     );
+//   }
+// }
+
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggleTheme = () => {
-      this.setState((state) => ({
-        theme: state.theme === themes.dark ? themes.light : themes.dark
-      }));
-    };
-
-    this.state = {
-      theme: themes.dark,
-      toggleTheme: this.toggleTheme
-    }
-  }
-
   render() {
-    return(
+    return (
       <div>
-        <ThemeContext.Provider value={this.state}>
-          <Content />
-        </ThemeContext.Provider>
+        <Table />
       </div>
+    );
+  }
+}
+
+class Table extends React.Component {
+  render() {
+    return (
+      <table>
+        <tr>
+          <Columns />
+        </tr>
+      </table>
+    );
+  }
+}
+
+class Columns extends React.Component {
+  render() {
+    return (
+      <>
+        <td>Bonjour</td>
+        <td>Tout le monde</td>
+      </>
     );
   }
 }
